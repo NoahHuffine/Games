@@ -32,10 +32,11 @@
     height: 100%;
     margin: 0;
     overflow: hidden;
-    background: #000;
+    background: #000; /* dark background for snow visibility */
     color: white;
 }
 
+        /* Removed gradient animation */
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
@@ -107,9 +108,16 @@
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(110vh);
+    0% {
+        transform: translateY(0) rotate(0deg);
     }
+    50% {
+        transform: translateY(55vh) rotate(20deg);
+    }
+    100% {
+        transform: translateY(110vh) rotate(-20deg);
+    }
+}
 }
 </style>
 </head>
@@ -146,6 +154,7 @@
         });
     </script>
 <script>
+// Create falling snowflakes
 function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.classList.add('snowflake');
