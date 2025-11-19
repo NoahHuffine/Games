@@ -6,7 +6,7 @@
     <title>Noahs Math Tools</title>
 
     <style>
-        /* Home Button */
+        /* HOME BUTTON */
         #homeBtn {
             margin-top: 20px;
             padding: 0.6em 1.2em;
@@ -18,10 +18,13 @@
             text-decoration: none;
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            display: inline-flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             transition: 0.25s;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
             border-radius: 10px;
         }
 
@@ -30,43 +33,47 @@
             color: white;
         }
 
-        /* Main Page Layout */
+        /* PAGE BACKGROUND */
         html, body {
             height: 100%;
             margin: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            background: black;
+            overflow-x: hidden;
+            overflow-y: visible;
+            background: #000;
             color: white;
-            position: relative;
+            font-family: monospace;
         }
 
-        /* Snowflakes behind content */
+        /* SNOWFLAKE STYLE */
         .snowflake {
             position: fixed;
-            top: -10px;
+            top: -20px;
             color: white;
-            font-size: 18px;
-            user-select: none;
-            pointer-events: none;
-            opacity: 0.9;
             animation-name: fall;
             animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-10px) rotate(-20deg); }
-            50% { transform: translateY(50vh) rotate(20deg); }
-            100% { transform: translateY(100vh) rotate(-20deg); }
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(55vh) rotate(20deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(-20deg);
+            }
         }
 
-        /* Centered Game Box */
+        /* GAME BOX */
         .gameBox {
-            margin-top: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
             width: 700px;
             height: 420px;
 
@@ -79,9 +86,10 @@
             color: white;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.25);
+            z-index: 10;
         }
 
-        /* Search Bar */
+        /* SEARCH BAR */
         #searchBar {
             width: 90%;
             padding: 10px;
@@ -92,10 +100,10 @@
             -webkit-backdrop-filter: blur(6px);
             color: white;
             font-size: 16px;
-            font-family: monospace;
+            margin-bottom: 12px;
         }
 
-        /* Game List */
+        /* SCROLLING LIST */
         .gameList {
             margin-top: 15px;
             height: 320px;
@@ -103,6 +111,7 @@
             padding-right: 8px;
         }
 
+        /* GAME BUTTONS */
         .gameBtn {
             display: block;
             width: 80%;
@@ -146,8 +155,8 @@
         </div>
     </div>
 
+    <!-- SEARCH BAR FILTER SCRIPT -->
     <script>
-        /* Search Filtering */
         const searchBar = document.getElementById('searchBar');
         const gameButtons = document.querySelectorAll('.gameBtn');
 
@@ -159,9 +168,27 @@
                 btn.style.display = text.includes(filter) ? 'block' : 'none';
             });
         });
+    </script>
 
-        /* Snowflakes */
+    <!-- SNOW SCRIPT -->
+    <script>
         function createSnowflake() {
-            const snow = document.createElement("div");
-            snow.classList.add("snowflake");
-            snow.te
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 10000);
+        }
+
+        setInterval(createSnowflake, 200);
+    </script>
+
+</body>
+</html>
