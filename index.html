@@ -29,19 +29,13 @@
         }
 
         html, body {
-            height: 100%;
-            margin: 0;
-            overflow: hidden;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+    color: white;
+}
 
-            background: linear-gradient(45deg, #000000, #944903);
-            background-size: 400% 400%;
-            animation: bgshift 4s ease infinite;
-
-            color: white;
-        }
-
-        @keyframes bgshift {
-            0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
@@ -69,7 +63,7 @@
     padding: 10px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     color: white;
@@ -85,7 +79,7 @@
 
         .gameBtn {
             display: block;
-            width: 80%;
+            width: 50%;
             padding: 12px;
             margin: 8px auto;
 
@@ -104,7 +98,20 @@
             background: rgba(255, 255, 255, 0.30);
             text-shadow: 0 0 6px white;
         }
-    </style>
+    .snowflake {
+    position: fixed;
+    top: -20px;
+    color: white;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
 </head>
 <body>
     <a id="homeBtn" href="https://noahhuffine.github.io/" target="_blank">Home</a>
@@ -138,5 +145,25 @@
             });
         });
     </script>
+<script>
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.textContent = '❄';
+
+    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+    snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+    snowflake.style.opacity = Math.random();
+    snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+    document.body.appendChild(snowflake);
+
+    setTimeout(() => {
+        snowflake.remove();
+    }, 10000);
+}
+
+setInterval(createSnowflake, 200);
+</script>
 </body>
 </html>
