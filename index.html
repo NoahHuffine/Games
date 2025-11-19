@@ -45,9 +45,72 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        .gameBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 350px;
+    height: 420px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+    .gameList {
+        margin-top: 15px;
+        height: 320px;
+        overflow-y: auto;
+        padding-right: 8px;
+}
+
+.gameBtn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.18);
+
+    border-radius: 10px;
+    transition: 0.25s;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.gameBtn:hover {
+    background: rgba(255, 255, 255, 0.30);
+    text-shadow: 0 0 6px white;
+}
     </style>
 </head>
   <a id="homeBtn" href="https://noahhuffine.github.io/" target="_blank">Home</a>
 <body>
+    <div class="gameBox">
+
+    <div class="gameList">
+
+        <a href="game1.html" class="gameBtn">Game 1</a>
+        <a href="game2.html" class="gameBtn">Game 2</a>
+        <a href="game3.html" class="gameBtn">Game 3</a>
+        <a href="game4.html" class="gameBtn">Game 4</a>
+        <a href="game5.html" class="gameBtn">Game 5</a>
+        <a href="game6.html" class="gameBtn">Game 6</a>
+        <a href="game7.html" class="gameBtn">Game 7</a>
+        <a href="game8.html" class="gameBtn">Game 8</a>
+        <a href="game9.html" class="gameBtn">Game 9</a>
+
+    </div>
+</div>
 </body>
 </html>
