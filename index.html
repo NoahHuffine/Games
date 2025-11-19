@@ -6,6 +6,7 @@
     <title>Noahs Math Tools</title>
 
     <style>
+        /* Home Button */
         #homeBtn {
             margin-top: 20px;
             padding: 0.6em 1.2em;
@@ -17,10 +18,11 @@
             text-decoration: none;
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
             transition: 0.25s;
+            border-radius: 10px;
         }
 
         #homeBtn:hover {
@@ -28,24 +30,43 @@
             color: white;
         }
 
+        /* Main Page Layout */
         html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    background: #000; /* dark background for snow visibility */
-    color: white;
-}
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        /* Removed gradient animation */
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: black;
+            color: white;
+            position: relative;
         }
-        .gameBox {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
 
+        /* Snowflakes behind content */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 18px;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.9;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(-20deg); }
+            50% { transform: translateY(50vh) rotate(20deg); }
+            100% { transform: translateY(100vh) rotate(-20deg); }
+        }
+
+        /* Centered Game Box */
+        .gameBox {
+            margin-top: 40px;
             width: 700px;
             height: 420px;
 
@@ -59,18 +80,22 @@
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.25);
         }
+
+        /* Search Bar */
         #searchBar {
-    width: 90%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    color: white;
-    font-size: 16px;
-    font-family: monospace;
-}
+            width: 90%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: white;
+            font-size: 16px;
+            font-family: monospace;
+        }
+
+        /* Game List */
         .gameList {
             margin-top: 15px;
             height: 320px;
@@ -80,7 +105,7 @@
 
         .gameBtn {
             display: block;
-            width: 50%;
+            width: 80%;
             padding: 12px;
             margin: 8px auto;
 
@@ -99,29 +124,10 @@
             background: rgba(255, 255, 255, 0.30);
             text-shadow: 0 0 6px white;
         }
-    .snowflake {
-    position: fixed;
-    top: -20px;
-    color: white;
-    animation-name: fall;
-    animation-timing-function: linear;
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(55vh) rotate(20deg);
-    }
-    100% {
-        transform: translateY(110vh) rotate(-20deg);
-    }
-}
-}
-</style>
+    </style>
 </head>
 <body>
+
     <a id="homeBtn" href="https://noahhuffine.github.io/" target="_blank">Home</a>
 
     <div class="gameBox">
@@ -141,6 +147,7 @@
     </div>
 
     <script>
+        /* Search Filtering */
         const searchBar = document.getElementById('searchBar');
         const gameButtons = document.querySelectorAll('.gameBtn');
 
@@ -152,27 +159,9 @@
                 btn.style.display = text.includes(filter) ? 'block' : 'none';
             });
         });
-    </script>
-<script>
-// Create falling snowflakes
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    snowflake.textContent = '❄';
 
-    snowflake.style.left = Math.random() * window.innerWidth + 'px';
-    snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    snowflake.style.opacity = Math.random();
-    snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
-
-    document.body.appendChild(snowflake);
-
-    setTimeout(() => {
-        snowflake.remove();
-    }, 10000);
-}
-
-setInterval(createSnowflake, 200);
-</script>
-</body>
-</html>
+        /* Snowflakes */
+        function createSnowflake() {
+            const snow = document.createElement("div");
+            snow.classList.add("snowflake");
+            snow.te
